@@ -1,15 +1,15 @@
 # UT4--DISE-ANDO-UN-SISTEMA-BIBLIOTECA-MVC
 
-#Objetivo
-Este sistema permite gestionar de forma integral una biblioteca digital mediante una interfaz de consola interactiva. La aplicación implementa el patrón MVC.
+##Objetivo
+- Este sistema permite gestionar de forma integral una biblioteca digital mediante una interfaz de consola interactiva. La aplicación implementa el patrón MVC.
 
 
-#Cómo ejecutar el programa
- Compila el proyecto desde la raíz main.java
+##Cómo ejecutar el programa
+- Compila el proyecto desde la raíz main.java
 
 
 
-#REPARTO DE TAREAS RESUMIDO:
+##REPARTO DE TAREAS RESUMIDO:
 
 IVÁN : 
 
