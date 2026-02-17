@@ -1,4 +1,4 @@
-package modelo;
+package model;
 
 public enum Genero {
     NOVELA,
@@ -9,4 +9,5 @@ public enum Genero {
     INFANTIL,
     POESIA,
     OTRO
+
 }
