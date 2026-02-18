@@ -234,3 +234,65 @@ public class GestorBiblioteca {
             libroDevuelto.setEstado(EstadoLibro.DISPONIBLE);
         }
     }
+
+    // Parte Iván
+    // Reserva de libros
+    public void reservarLibro(String identificadorUsuario, String codigoIsbn) {
+        try {
+            Usuario usuarioEncontrado = buscarUsuarioPorId(identificadorUsuario);
+            Libro libroEncontrado = buscarLibroPorIsbn(codigoIsbn);
+
+            validarExistenciaUsuario(usuarioEncontrado, identificadorUsuario);
+            validarExistenciaLibro(libroEncontrado, codigoIsbn);
+
+            if (libroEncontrado.getEstado() == EstadoLibro.RESERVADO ||
+                    libroEncontrado.getEstado() == EstadoLibro.DISPONIBLE) {
+
+                throw new Libro_NoDisponible_Exception();
+            }
+
+            libroEncontrado.setEstado(EstadoLibro.RESERVADO);
+            consola.mostrarMensaje("Libro reservado correctamente.");
+
+        } catch (Libro_NoDisponible_Exception excepcion) {
+            consola.mostrarError("El libro no esta disponible para reserva.");
+        } catch (IllegalArgumentException excepcion) {
+            consola.mostrarError(excepcion.getMessage());
+        }
+    }
+
+    // Parte Iván
+    public Libro buscarLibroPorIsbn(String codigoIsbn) {
+        for (Libro libro : libros) {
+            if (libro.getIsbn().equals(codigoIsbn)) {
+                return libro;
+            }
+        }
+        return null;
+    }
+
+        // Parte Iván
+    public ArrayList<Libro> buscarLibrosPorTitulo(String titulo) {
+        ArrayList<Libro> resultadoBusqueda = new ArrayList<>();
+
+        for (Libro libro : libros) {
+            if (libro.getTitulo().toLowerCase().contains(titulo.toLowerCase())) {
+                resultadoBusqueda.add(libro);
+            }
+        }
+
+        return resultadoBusqueda;
+    }
+
+        // Parte Iván
+    public ArrayList<Libro> buscarLibrosPorGenero(Genero genero) {
+        ArrayList<Libro> resultadoBusqueda = new ArrayList<>();
+
+        for (Libro libro : libros) {
+            if (libro.getGenero() == genero) {
+                resultadoBusqueda.add(libro);
+            }
+        }
+
+        return resultadoBusqueda;
+    }
