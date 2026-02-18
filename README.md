@@ -1,15 +1,24 @@
 # UT4--DISE-ANDO-UN-SISTEMA-BIBLIOTECA-MVC
 
-##Objetivo
+## Objetivo
 - Este sistema permite gestionar de forma integral una biblioteca digital mediante una interfaz de consola interactiva. La aplicación implementa el patrón MVC.
 
+## Caracteristicas: 
 
-##Cómo ejecutar el programa
+- Libros: añadir, eliminar y buscar por ISBN, título o género.
+- Usuarios: registrar y eliminar usuarios con seguimiento de préstamos activos e historial.
+- Préstamos: prestar, devolver y reservar libros con validaciones automáticas:
+- Máximo 3 préstamos activos por usuario.
+- Bloqueo de 7 días si se devuelve un libro con más de 30 días de préstamo.
+- Vencimiento automático a los 30 días.
+- Excepciones personalizadas para controlar errores de negocio.
+- Enums para estados del libro (DISPONIBLE, PRESTADO, RESERVADO) y géneros literarios.
+ 
+## Cómo ejecutar el programa
+
 - Compila el proyecto desde la raíz main.java
 
-
-
-##REPARTO DE TAREAS RESUMIDO:
+## REPARTO DE TAREAS RESUMIDO:
 
  - IVÁN : 
 
