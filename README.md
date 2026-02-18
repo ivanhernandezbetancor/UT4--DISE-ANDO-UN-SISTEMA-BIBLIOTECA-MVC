@@ -22,7 +22,7 @@ VISTA : Main y la consola hace la parte de : monstrarMensaje, mostrarError, most
 CONTROLADOR : Gestor Biblioteca hace la parte agregarLibro, eliminarLibro , agregarUsuario , eliminarUsuario, prestarLibro , reservarLibro, buscarLibroPorIsbn , buscarLibrosPorTitulo y buscarLibrosPorGenero.
 
 
- - IZÁN :
+ - IZAN :
 
 MODELO : Prestamo y Usuario
 
