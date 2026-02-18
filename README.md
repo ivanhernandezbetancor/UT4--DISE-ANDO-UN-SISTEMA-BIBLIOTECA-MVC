@@ -24,8 +24,12 @@ CONTROLADOR : Gestor Biblioteca hace la parte agregarLibro, eliminarLibro , agre
 
  - IZÁN :
 
-MODELO :
+MODELO : Prestamo y Usuario
 
-VISTA :
+VISTA : Consola: mostrarUsuario, mostrarListaUsusarios, mostrarPrestamo, mostrarListaPrestamos, mostrarResumenBiblioteca y mostrarLibrosUsuario
 
-CONTROLADOR : 
+CONTROLADOR : GestorBiblioteca;
+Metodos auxiliares del prestamo: validarExistenciaUsuario, validarExistenciaLibro, validarLimitePrestamosUsuario, validarDisponibilidadLibro, validarBloqueoPrestamoAnterior, crearPrestamoNuevo y actualizarEstadoLibroAlPrestar
+Devolucion de libros: devolverLibro, buscarPrestamoActivoEnUsuario y procesarDevolucionDelLibro
+buscarUsuarioPorId, buscarUsuarioConLibro, mostrarResumenLibros, mostrarResumenUsuarios y mostrarResumenBiblioteca
+
