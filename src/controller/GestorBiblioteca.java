@@ -296,3 +296,44 @@ public class GestorBiblioteca {
 
         return resultadoBusqueda;
     }
+
+//Parte Izan
+
+    public Usuario buscarUsuarioPorId(String identificadorUsuario) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getIdUsuario().equals(identificadorUsuario)) {
+                return usuario;
+            }
+        }
+        return null;
+    }
+
+    public void buscarUsuarioConLibro(String codigoIsbn) {
+        for (Usuario usuario : usuarios) {
+            for (Prestamo prestamo : usuario.getPrestamosActivos()) {
+                if (prestamo.getLibro().getIsbn().equals(codigoIsbn)) {
+                    consola.mostrarMensaje("El libro esta prestado a: " + usuario.getNombre()
+                            + " (ID: " + usuario.getIdUsuario() + ")");
+                    return;
+                }
+            }
+        }
+        consola.mostrarMensaje("Ningun usuario tiene prestado ese libro actualmente.");
+    }
+
+    public void mostrarResumenLibros() {
+        consola.mostrarMensaje("===== RESUMEN DE LIBROS =====");
+        consola.mostrarListaLibros(libros);
+    }
+
+    public void mostrarResumenUsuarios() {
+        consola.mostrarMensaje("===== RESUMEN DE USUARIOS =====");
+        for (Usuario usuario : usuarios) {
+            consola.mostrarLibrosPorUsuario(usuario);
+        }
+    }
+
+    public void mostrarResumenBiblioteca() {
+        consola.mostrarResumenBiblioteca(libros, usuarios);
+    }
+}
