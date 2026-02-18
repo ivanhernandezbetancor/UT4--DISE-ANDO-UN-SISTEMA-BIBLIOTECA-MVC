@@ -71,7 +71,7 @@ public class GestorBiblioteca {
         consola.mostrarMensaje("Usuario eliminado: " + usuarioEncontrado.getNombre());
     }
 
-    //  IVÁN 
+    // Parte Iván
     // Gestiono el préstamo completo del libro
     public void prestarLibro(String identificadorUsuario, String codigoIsbn) {
         try {
