@@ -71,7 +71,7 @@ public class GestorBiblioteca {
         consola.mostrarMensaje("Usuario eliminado: " + usuarioEncontrado.getNombre());
     }
 
-    // Parte Iván
+    //  IVÁN 
     // Gestiono el préstamo completo del libro
     public void prestarLibro(String identificadorUsuario, String codigoIsbn) {
         try {
@@ -104,86 +104,3 @@ public class GestorBiblioteca {
         }
     }
 
-    // Parte Iván
-    // Métodos auxiliares del préstamo
-
-    private void validarExistenciaUsuario(Usuario usuario, String identificadorUsuario)
-            throws IllegalArgumentException {
-
-        if (usuario == null) {
-            throw new IllegalArgumentException(
-                    "Usuario no encontrado con identificador: " + identificadorUsuario);
-        }
-    }
-
-    private void validarExistenciaLibro(Libro libro, String codigoIsbn)
-            throws IllegalArgumentException {
-
-        if (libro == null) {
-            throw new IllegalArgumentException(
-                    "Libro no encontrado con codigo ISBN: " + codigoIsbn);
-        }
-    }
-
-    private void validarLimitePrestamosUsuario(Usuario usuario)
-            throws Limiteprestamos_excedido_Excepciones {
-
-        int cantidadPrestamosActivos = usuario.getPrestamosActivos().size();
-
-        if (cantidadPrestamosActivos >= 3) {
-            throw new Limiteprestamos_excedido_Excepciones();
-        }
-    }
-
-    private void validarDisponibilidadLibro(Libro libro)
-            throws Libro_NoDisponible_Exception {
-
-        boolean libroNoDisponible = libro.getEstado() != EstadoLibro.DISPONIBLE ||
-                libro.getCopiasDisponibles() == 0;
-
-        if (libroNoDisponible) {
-            throw new Libro_NoDisponible_Exception();
-        }
-    }
-
-    private void validarBloqueoPrestamoAnterior(String identificadorUsuario, String codigoIsbn)
-            throws BloqueoPrestamoException {
-
-        for (Prestamo prestamoAnterior : prestamos) {
-
-            boolean esDelMismoUsuario = prestamoAnterior.getUsuario().getIdUsuario().equals(identificadorUsuario);
-            boolean esDelMismoLibro = prestamoAnterior.getLibro().getIsbn().equals(codigoIsbn);
-            boolean yaFueDevuelto = prestamoAnterior.getFechaDevolucion() != null;
-
-            if (esDelMismoUsuario && esDelMismoLibro && yaFueDevuelto) {
-
-                long diasPrestado = prestamoAnterior.getFechaPrestamo()
-                        .until(prestamoAnterior.getFechaDevolucion())
-                        .getDays();
-
-                if (diasPrestado >= 30) {
-
-                    LocalDate fechaFinBloqueo = prestamoAnterior.getFechaDevolucion().plusDays(7);
-
-                    if (LocalDate.now().isBefore(fechaFinBloqueo)) {
-                        throw new BloqueoPrestamoException();
-                    }
-                }
-            }
-        }
-    }
-
-    private Prestamo crearPrestamoNuevo(Usuario usuario, Libro libro) {
-        String identificadorPrestamo = "P" + contadorPrestamos++;
-        Prestamo prestamoNuevo = new Prestamo(identificadorPrestamo, usuario, libro);
-        return prestamoNuevo;
-    }
-
-    private void actualizarEstadoLibroAlPrestar(Libro libro) {
-        int copiasActuales = libro.getCopiasDisponibles();
-        libro.setCopiasDisponibles(copiasActuales - 1);
-
-        if (libro.getCopiasDisponibles() == 0) {
-            libro.setEstado(EstadoLibro.PRESTADO);
-        }
-    }
